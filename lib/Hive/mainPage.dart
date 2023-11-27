@@ -3,6 +3,13 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:tugas_akhir/main.dart';
 import 'package:tugas_akhir/model/Todo.dart';
+import 'package:tugas_akhir/Halaman%20API/halaman_api.dart';
+import 'package:tugas_akhir/Hive/addTodo.dart';
+import 'package:tugas_akhir/halaman_profil.dart';
+import 'package:tugas_akhir/halaman_utama.dart';
+import 'package:tugas_akhir/kesan.dart';
+import 'package:tugas_akhir/konversi/konversi_uang.dart';
+import 'package:tugas_akhir/konversi/konversi_waktu.dart';
 
 class MyDashboard extends StatefulWidget {
   const MyDashboard({Key? key}) : super(key: key);
@@ -24,18 +31,12 @@ class _MyDashboardState extends State<MyDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('List Data'),
+        title: const Text('Data Mario'),
         centerTitle: true,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.blue, Colors.blueGrey],
-              begin: Alignment.bottomRight,
-              end: Alignment.topLeft,
-            ),
-          ),
-        ),
+        backgroundColor: Color.fromARGB(255, 97, 35, 35), 
       ),
+       drawer: CustomDrawer(),
+       backgroundColor: Color.fromARGB(248, 203, 158, 150),
       body: ValueListenableBuilder(
         valueListenable: _myBox.listenable(),
         builder: (context, value, child) {
@@ -63,7 +64,7 @@ class _MyDashboardState extends State<MyDashboard> {
                   elevation: 3,
                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: ListTile(
-                    title: Text("Title: ${res!.Title}"),
+                    title: Text("Nama MARIO: ${res!.Title}"),
                     subtitle: Text("Description: ${res.Desc}"),
                   ),
                 ),
@@ -71,6 +72,110 @@ class _MyDashboardState extends State<MyDashboard> {
             },
           );
         },
+      ),
+    );
+  }
+}
+
+class CustomDrawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      backgroundColor: Color.fromARGB(248, 214, 201, 199),
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(
+              //color: Color.fromARGB(255, 68, 26, 26), 
+              image: DecorationImage(
+                image: AssetImage('../assets/gambar_drawer1.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: null,
+          ),
+          ListTile(
+            title: Text('Halaman Utama'),
+            leading: Icon(Icons.home, color: Colors.black),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Profil'),
+            leading: Icon(Icons.account_circle, color: Colors.blue),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => profil()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Mario GAMES'),
+            leading: Icon(Icons.games, color: Colors.green),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => halaman_users()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Mario PLUS'),
+            leading: Icon(Icons.add, color: Colors.orange),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddTodo()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Mario SEE'),
+            leading: Icon(Icons.visibility, color: Colors.purple),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyDashboard()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Mario MONEY'),
+            leading: Icon(Icons.attach_money, color: Colors.yellow),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CurrencyConverter()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Mario TIME'),
+            leading: Icon(Icons.access_time, color: Colors.red),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => konversiwaktu()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Kesan dan Pesan'),
+            leading: Icon(Icons.message, color: Colors.teal),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => kesanpesan()),
+              );
+            },
+          ),
+        ],
       ),
     );
   }

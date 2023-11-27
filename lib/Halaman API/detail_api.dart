@@ -15,16 +15,9 @@ class UserDetail extends StatelessWidget {
       appBar: AppBar(
         title: Text('Detail Mario'),
         centerTitle: true,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.blue, Colors.blueGrey],
-              begin: Alignment.bottomRight,
-              end: Alignment.topLeft,
-            ),
-          ),
-        ),
+        backgroundColor: Color.fromARGB(255, 97, 35, 35), 
       ),
+       backgroundColor: Color.fromARGB(248, 203, 158, 150),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -89,3 +82,4 @@ Future<void> _launchURL(String url) async {
     print('Error launching URL: $e');
   }
 }
+

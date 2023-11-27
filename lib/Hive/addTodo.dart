@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:tugas_akhir/main.dart';
 import 'package:tugas_akhir/model/Todo.dart';
+import 'package:tugas_akhir/Halaman%20API/halaman_api.dart';
+import 'package:tugas_akhir/Hive/mainPage.dart';
+import 'package:tugas_akhir/halaman_profil.dart';
+import 'package:tugas_akhir/halaman_utama.dart';
+import 'package:tugas_akhir/kesan.dart';
+import 'package:tugas_akhir/konversi/konversi_uang.dart';
+import 'package:tugas_akhir/konversi/konversi_waktu.dart';
 
 class AddTodo extends StatefulWidget {
   const AddTodo({Key? key});
@@ -26,18 +33,12 @@ class _AddTodoState extends State<AddTodo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Data'),
+        title: const Text('Mario PLUS'),
         centerTitle: true,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.blue, Colors.blueGrey],
-              begin: Alignment.bottomRight,
-              end: Alignment.topLeft,
-            ),
-          ),
-        ),
+        backgroundColor: Color.fromARGB(255, 97, 35, 35), 
       ),
+       drawer: CustomDrawer(),
+       backgroundColor: Color.fromARGB(248, 203, 158, 150),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -50,7 +51,7 @@ class _AddTodoState extends State<AddTodo> {
             const SizedBox(height: 20),
             TextFormField(
               controller: _titleController,
-              decoration: InputDecoration(labelText: 'Title'),
+              decoration: InputDecoration(labelText: 'Nama MARIO'),
             ),
             const SizedBox(height: 10),
             TextFormField(
@@ -70,12 +71,116 @@ class _AddTodoState extends State<AddTodo> {
               },
               child: Text('Submit'),
               style: ElevatedButton.styleFrom(
-                primary: Colors.blue, // background color
+                primary: const Color.fromARGB(255, 97, 35, 35), // background color
                 onPrimary: Colors.white, // text color
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CustomDrawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      backgroundColor: Color.fromARGB(248, 214, 201, 199),
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(
+              //color: Color.fromARGB(255, 68, 26, 26), 
+              image: DecorationImage(
+                image: AssetImage('../assets/gambar_drawer1.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: null,
+          ),
+          ListTile(
+            title: Text('Halaman Utama'),
+            leading: Icon(Icons.home, color: Colors.black),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Profil'),
+            leading: Icon(Icons.account_circle, color: Colors.blue),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => profil()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Mario GAMES'),
+            leading: Icon(Icons.games, color: Colors.green),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => halaman_users()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Mario PLUS'),
+            leading: Icon(Icons.add, color: Colors.orange),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddTodo()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Mario SEE'),
+            leading: Icon(Icons.visibility, color: Colors.purple),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyDashboard()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Mario MONEY'),
+            leading: Icon(Icons.attach_money, color: Colors.yellow),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CurrencyConverter()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Mario TIME'),
+            leading: Icon(Icons.access_time, color: Colors.red),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => konversiwaktu()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Kesan dan Pesan'),
+            leading: Icon(Icons.message, color: Colors.teal),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => kesanpesan()),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
