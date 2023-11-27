@@ -9,6 +9,11 @@ import 'package:tugas_akhir/konversi/konversi_uang.dart';
 import 'package:tugas_akhir/konversi/konversi_waktu.dart';
 import 'package:tugas_akhir/loginPage.dart';
 
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:tugas_akhir/main.dart';
+import 'package:tugas_akhir/model/Todo.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,11 +23,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late SharedPreferences logindata;
   late String username;
+  late Box<ToDoModel> _myBox;
 
 
   @override
   void initState() {
     super.initState();
+    _myBox = Hive.box(boxName);
     initial();
   }
 
@@ -37,8 +44,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Halaman Utama'),
-        backgroundColor: Color.fromARGB(255, 97, 35, 35), 
+        title: Text(
+          'Mario App',
+          style: TextStyle(color: Colors.black, fontSize: 20.0,  fontWeight: FontWeight.bold),
+          
+          ),
+         backgroundColor: Colors.transparent,
+         elevation: 0,
+        //backgroundColor: Color.fromARGB(255, 97, 35, 35), 
         actions: [
           IconButton(
             onPressed: () {
@@ -56,102 +69,192 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Color.fromARGB(248, 203, 158, 150),
       drawer: CustomDrawer(), 
 
-
-      body: Container(
-      padding: const EdgeInsets.all(8.0),
-      child: GridView.count(
-        crossAxisCount: 3, 
-        crossAxisSpacing: 8.0, 
-        mainAxisSpacing: 8.0, 
+      body: ListView(
         children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => profil()),
-              );
-            },
-            child: CardWidget('Profil', '../assets/image1.jpg'),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => halaman_users()),
-              );
-            },
-            child: CardWidget('Mario GAME', '../assets/gambar2.png'),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AddTodo()),
-              );
-            },
-            child: CardWidget('Mario PLUS', '../assets/gambar3.jpg'),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MyDashboard()),
-              );
-            },
-            child: CardWidget('Mario LIHAT', '../assets/gambar4.jpg'),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CurrencyConverter()),
-              );
-            },
-            child: CardWidget('Mario UANG', '../assets/gambar5.jpg'),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => konversiwaktu()),
-              );
-            },
-            child: CardWidget('Mario WAKTU', '../assets/gambar6.jpg'),
+          SingleChildScrollView(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  height: 150.0,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      HorizontalCard('Profil', '../assets/image1.jpg', () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => profil()),
+                        );
+                      }),
+                      HorizontalCard('Mario Game', '../assets/gambar2.png', () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => halaman_users()),
+                        );
+                      }),
+                      HorizontalCard('Mario PLUS', '../assets/gambar3.jpg', () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => AddTodo()),
+                        );
+                      }),
+                      HorizontalCard('Mario DATA', '../assets/gambar4.jpg', () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MyDashboard()),
+                        );
+                      }),
+                      HorizontalCard('Mario MONEY', '../assets/gambar5.jpg', () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CurrencyConverter()),
+                        );
+                      }),
+                      HorizontalCard('Mario TIME', '../assets/gambar6.jpg', () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => konversiwaktu()),
+                        );
+                      }),
+                      // Tambahkan card horizontal sesuai kebutuhan
+                    ],
+                  ),
+                ),
+                SizedBox(height: 16.0),
+
+                Text(
+                  'Data Tersimpan',
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
+                ValueListenableBuilder(
+                  valueListenable: _myBox.listenable(),
+                  builder: (context, value, child) {
+                    if (_myBox.values.isEmpty) {
+                      return Center(
+                        child: Text("File KOSONG"),
+                      );
+                    } else {
+                      return Card(
+                        elevation: 3,
+                        margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                        child: Column(
+                          children: _myBox.values.map((res) {
+                            return ListTile(
+                              title: Text("Nama MARIO: ${res.Title}"),
+                              subtitle: Text("Description: ${res.Desc}"),
+                            );
+                          }).toList(),
+                        ),
+                      );
+                    }
+                  },
+                ),
+
+                SizedBox(height: 16.0),
+
+                // Deskripsi Aplikasi
+                Column(
+                  children: [
+                    Text(
+                      'Deskripsi Aplikasi',
+                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 8.0),
+                    Card(
+                      elevation: 3,
+                      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text(
+                              'Aplikasi bernama MARIO APP. didalam nya terdapat beberapa fitur yang disuguhkan antaira lain fitur profil, mario game, tambah data, dan lihat data. masih banyak fitur yang dapat di explore didalam app ini',
+                              style: TextStyle(fontSize: 16.0),
+                              textAlign: TextAlign.justify,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 16.0),
+
+                // Footer Kontak Service
+                Container(
+                  color: Colors.grey[300],
+                  padding: EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        children: [
+                          Icon(
+                            Icons.mail,
+                            color: Colors.black,
+                          ),
+                          SizedBox(height: 4.0),
+                          Text(
+                            'Email',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Icon(
+                            Icons.phone,
+                            color: Colors.black,
+                          ),
+                          SizedBox(height: 4.0),
+                          Text(
+                            'Telepon',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ],
       ),
-    ),
     );
   }
 }
 
-
-class CardWidget extends StatelessWidget {
-  final String cardTitle;
+class HorizontalCard extends StatelessWidget {
+  final String title;
   final String imagePath;
+  final VoidCallback onTap;
 
-  CardWidget(this.cardTitle, this.imagePath);
+  HorizontalCard(this.title, this.imagePath, this.onTap);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(8),
-      child: Column(
-        children: [
-          Image.asset(
-            imagePath,
-            height: 100,
-            width: double.infinity,
-            fit: BoxFit.fitHeight,
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        child: Container(
+          width: 120.0,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                imagePath,
+                height: 80.0,
+                width: 80.0,
+              ),
+              SizedBox(height: 8.0),
+              Text(title),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text(
-              cardTitle,
-              style: TextStyle(fontSize: 14),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
