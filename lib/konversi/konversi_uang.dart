@@ -49,7 +49,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
           children: [
             SizedBox(height: 10), 
             Image.asset(
-              '../assets/gambar5.jpg', 
+              'assets/gambar5.jpg', 
               height: 200, 
               width: 300,
             ),
@@ -129,7 +129,7 @@ class CustomDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               //color: Color.fromARGB(255, 68, 26, 26), 
               image: DecorationImage(
-                image: AssetImage('../assets/gambar_drawer1.jpg'),
+                image: AssetImage('assets/gambar_drawer1.jpg'),
                 fit: BoxFit.cover,
               ),
             ),

@@ -29,7 +29,7 @@ class kesanpesan extends StatelessWidget {
               width: 150,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('../assets/Profile.jpg'), 
+                  image: AssetImage('assets/Profile.jpg'), 
                   fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.circular(75),
@@ -102,7 +102,7 @@ class CustomDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               //color: Color.fromARGB(255, 68, 26, 26), 
               image: DecorationImage(
-                image: AssetImage('../assets/gambar_drawer1.jpg'),
+                image: AssetImage('assets/gambar_drawer1.jpg'),
                 fit: BoxFit.cover,
               ),
             ),

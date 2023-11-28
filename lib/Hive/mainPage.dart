@@ -89,7 +89,7 @@ class CustomDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               //color: Color.fromARGB(255, 68, 26, 26), 
               image: DecorationImage(
-                image: AssetImage('../assets/gambar_drawer1.jpg'),
+                image: AssetImage('assets/gambar_drawer1.jpg'),
                 fit: BoxFit.cover,
               ),
             ),

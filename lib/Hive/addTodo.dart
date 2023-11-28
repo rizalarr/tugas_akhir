@@ -53,7 +53,7 @@ class _AddTodoState extends State<AddTodo> {
         child: Column(
           children: [
             Image.asset(
-              '../assets/gambar3.jpg', // Replace with your image asset
+              'assets/gambar3.jpg', // Replace with your image asset
               height: 150,
               width: 150,
             ),
@@ -106,7 +106,7 @@ class CustomDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               //color: Color.fromARGB(255, 68, 26, 26), 
               image: DecorationImage(
-                image: AssetImage('../assets/gambar_drawer1.jpg'),
+                image: AssetImage('assets/gambar_drawer1.jpg'),
                 fit: BoxFit.cover,
               ),
             ),

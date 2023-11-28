@@ -91,37 +91,37 @@ class _HomePageState extends State<HomePage> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      HorizontalCard('Profil', '../assets/image1.jpg', () {
+                      HorizontalCard('Profil', 'assets/image1.jpg', () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => profil()),
                         );
                       }),
-                      HorizontalCard('Mario Game', '../assets/gambar2.png', () {
+                      HorizontalCard('Mario Game', 'assets/gambar2.png', () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => halaman_users()),
                         );
                       }),
-                      HorizontalCard('Mario PLUS', '../assets/gambar3.jpg', () {
+                      HorizontalCard('Mario PLUS', 'assets/gambar3.jpg', () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => AddTodo()),
                         );
                       }),
-                      HorizontalCard('Mario DATA', '../assets/gambar4.jpg', () {
+                      HorizontalCard('Mario DATA', 'assets/gambar4.jpg', () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => MyDashboard()),
                         );
                       }),
-                      HorizontalCard('Mario MONEY', '../assets/gambar5.jpg', () {
+                      HorizontalCard('Mario MONEY', 'assets/gambar5.jpg', () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => CurrencyConverter()),
                         );
                       }),
-                      HorizontalCard('Mario TIME', '../assets/gambar6.jpg', () {
+                      HorizontalCard('Mario TIME', 'assets/gambar6.jpg', () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => konversiwaktu()),
@@ -282,7 +282,7 @@ class CustomDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               //color: Color.fromARGB(255, 68, 26, 26), 
               image: DecorationImage(
-                image: AssetImage('../assets/gambar_drawer1.jpg'),
+                image: AssetImage('assets/gambar_drawer1.jpg'),
                 fit: BoxFit.cover,
               ),
             ),

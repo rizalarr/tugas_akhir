@@ -29,6 +29,7 @@ class UserDetail extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             child: Container(
               width: 500, 
+              height: 500,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

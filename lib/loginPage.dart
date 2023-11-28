@@ -41,6 +41,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Login Page'),
         centerTitle: true,
@@ -54,11 +55,11 @@ class _MyLoginPageState extends State<MyLoginPage> {
           children: <Widget>[
             SizedBox(height: 20), // Add spacing between image and AppBar
             Image.asset(
-              '../assets/gambar_login.png', // Adjust the path accordingly
+              'assets/gambar_login.png', // Adjust the path accordingly
               height: 200,
               width: 200,
             ),
-            SizedBox(height: 20), // Add spacing between image and title
+            SizedBox(height: 20), 
             Text(
               "Login Form",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),

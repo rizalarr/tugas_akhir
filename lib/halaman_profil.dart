@@ -29,19 +29,7 @@ class profil extends StatelessWidget {
                 'Saya adalah seseorang yang senang belajar dan berkembang. '
                 'Pengalaman saya mencakup pengembangan perangkat lunak dan '
                 'saya memiliki minat dalam teknologi terkini.',
-            imagePath: '../assets/Profile.jpg',
-          ),
-          SizedBox(height: 10),
-          ProfileCard(
-            name: 'Ridwan Fadhli',
-            age: '20 tahun',
-            address: 'Jakarta, Indonesia',
-            birthDate: '15 Mei 2003',
-            description:
-                'Seorang profesional dalam bidang pemasaran digital dengan '
-                'pengalaman bertahun-tahun. Saya memiliki minat dalam strategi '
-                'pemasaran berbasis data.',
-            imagePath: '../assets/Profile.jpg',
+            imagePath: 'assets/Profile.jpg',
           ),
         ],
       ),
@@ -132,7 +120,7 @@ class CustomDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               //color: Color.fromARGB(255, 68, 26, 26), 
               image: DecorationImage(
-                image: AssetImage('../assets/gambar_drawer1.jpg'),
+                image: AssetImage('assets/gambar_drawer1.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
