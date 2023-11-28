@@ -45,6 +45,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
         title: const Text('Login Page'),
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 97, 35, 35), 
+        automaticallyImplyLeading: false,
       ),
        backgroundColor: Color.fromARGB(248, 203, 158, 150),
       body: Center(

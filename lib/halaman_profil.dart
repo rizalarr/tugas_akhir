@@ -33,10 +33,10 @@ class profil extends StatelessWidget {
           ),
           SizedBox(height: 10),
           ProfileCard(
-            name: 'Jane Smith',
-            age: '25 tahun',
+            name: 'Ridwan Fadhli',
+            age: '20 tahun',
             address: 'Jakarta, Indonesia',
-            birthDate: '15 Mei 1998',
+            birthDate: '15 Mei 2003',
             description:
                 'Seorang profesional dalam bidang pemasaran digital dengan '
                 'pengalaman bertahun-tahun. Saya memiliki minat dalam strategi '

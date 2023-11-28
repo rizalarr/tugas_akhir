@@ -29,6 +29,15 @@ class _AddTodoState extends State<AddTodo> {
     _myBox = Hive.box(boxName);
   }
 
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +76,10 @@ class _AddTodoState extends State<AddTodo> {
                     Desc: _descController.text,
                   ),
                 );
-                Navigator.pop(context);
+                _showSnackBar('Data berhasil ditambah');
+                _titleController.clear();
+                _descController.clear();
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddTodo()));
               },
               child: Text('Submit'),
               style: ElevatedButton.styleFrom(
