@@ -51,12 +51,12 @@ class _AddTodoState extends State<AddTodo> {
             const SizedBox(height: 20),
             TextFormField(
               controller: _titleController,
-              decoration: InputDecoration(labelText: 'Nama MARIO'),
+              decoration: InputDecoration(labelText: 'Nama'),
             ),
             const SizedBox(height: 10),
             TextFormField(
               controller: _descController,
-              decoration: InputDecoration(labelText: 'Description'),
+              decoration: InputDecoration(labelText: 'Deskripsi'),
             ),
             const SizedBox(height: 30),
             ElevatedButton(

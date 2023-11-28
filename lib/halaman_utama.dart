@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tugas_akhir/Halaman%20API/halaman_api.dart';
 import 'package:tugas_akhir/Hive/addTodo.dart';
 import 'package:tugas_akhir/Hive/mainPage.dart';
+import 'package:tugas_akhir/camera/camera.dart';
 import 'package:tugas_akhir/halaman_profil.dart';
 import 'package:tugas_akhir/kesan.dart';
 import 'package:tugas_akhir/konversi/konversi_uang.dart';
@@ -53,6 +54,15 @@ class _HomePageState extends State<HomePage> {
          elevation: 0,
         //backgroundColor: Color.fromARGB(255, 97, 35, 35), 
         actions: [
+          IconButton(
+            icon: Icon(Icons.camera),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => camera()),
+              );
+            },
+          ),
           IconButton(
             onPressed: () {
               logindata.setBool('login', true);
@@ -142,8 +152,8 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           children: _myBox.values.map((res) {
                             return ListTile(
-                              title: Text("Nama MARIO: ${res.Title}"),
-                              subtitle: Text("Description: ${res.Desc}"),
+                              title: Text("Nama Mario: ${res.Title}"),
+                              subtitle: Text("Description     : ${res.Desc}"),
                             );
                           }).toList(),
                         ),
