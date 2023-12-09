@@ -17,7 +17,7 @@ class kesanpesan extends StatelessWidget {
         centerTitle: true,
       ),
        backgroundColor: Color.fromARGB(248, 203, 158, 150),
-        drawer: CustomDrawer(),
+      drawer: CustomDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -49,7 +49,7 @@ class kesanpesan extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'pembelajaran yang sudah sangat sesuai dan menyenangkan, jikalau bisa tugas ditambah lagi!',
+              'pembelajaran yang sudah sangat sesuai dan menyenangkan, jikalau bisa tambah lagi durasi pengerjaan tugas menjadi 1 bulan atau 2 bulan',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
@@ -66,7 +66,7 @@ class kesanpesan extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'Tugas tugas yang diberikan benar benar mantab, karena tugas itu saya dapat belajar wkwkwkwk, ya walaupun 3 hari tidak tidur :)',
+              'Tugas tugas yang diberikan benar benar mantab, karena tugas itu jadi belajar :(, ya walaupun 3 hari tidak tidur :)',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
@@ -98,16 +98,34 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
+          Container(
+            height: 200,
             decoration: BoxDecoration(
-              //color: Color.fromARGB(255, 68, 26, 26), 
-              image: DecorationImage(
-                image: AssetImage('assets/gambar_drawer1.jpg'),
-                fit: BoxFit.cover,
+              color: Color.fromARGB(248, 214, 201, 199),
+              
+            ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage('assets/gambar_drawer1.jpg'),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'MARIO TABAH',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
             ),
-            child: null,
           ),
+          Divider(),
           ListTile(
             title: Text('Halaman Utama'),
             leading: Icon(Icons.home, color: Colors.black),

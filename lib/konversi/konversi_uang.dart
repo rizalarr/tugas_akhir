@@ -20,9 +20,9 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
 
   Map<String, double> exchangeRates = {
     'Rupiah': 14000,
-    'USD': 1.0, // Ubah sesuai dengan nilai tukar aktual
-    'SAR': 3.7, // Ubah sesuai dengan nilai tukar aktual
-    'MYR': 3.5, // Ubah sesuai dengan nilai tukar aktual
+    'USD': 1.0,
+    'SAR': 3.7,
+    'MYR': 3.5,
   };
 
   void convertCurrency() {
@@ -36,26 +36,33 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Mario MONEY'),
+        title: Text('Mario MONEY'),
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 97, 35, 35), 
       ),
-       drawer: CustomDrawer(),
-      backgroundColor: Color.fromARGB(248, 203, 158, 150),
+      drawer: CustomDrawer(),
+      backgroundColor: Color.fromARGB(248, 203, 158, 150), 
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SizedBox(height: 10), 
+            SizedBox(height: 10),
             Image.asset(
-              'assets/gambar5.jpg', 
-              height: 200, 
+              'assets/gambar5.jpg',
+              height: 200,
               width: 300,
+              fit: BoxFit.cover, 
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 50),
             TextField(
-              decoration: InputDecoration(labelText: 'Masukkan Jumlah'),
+              decoration: InputDecoration(
+                fillColor: Colors.red,
+                labelText: 'Masukkan Jumlah',
+                border: OutlineInputBorder(), 
+              ),
+              
               keyboardType: TextInputType.number,
               onChanged: (value) {
                 setState(() {
@@ -83,7 +90,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
                     },
                   ).toList(),
                 ),
-                Text('ke'),
+                Icon(Icons.arrow_forward, size: 30), 
                 DropdownButton<String>(
                   value: selectedToCurrency,
                   onChanged: (String? newValue) {
@@ -106,16 +113,34 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
             ElevatedButton(
               onPressed: convertCurrency,
               child: Text('Konversi'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue, 
+                onPrimary: Colors.white,
+              ),
             ),
             SizedBox(height: 20),
-            Text('$selectedFromCurrency: $inputAmount'),
-            Text('$selectedToCurrency: ${convertedAmount.toStringAsFixed(2)}'),
+           Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: const Color.fromARGB(255, 25, 24, 24)), 
+                borderRadius: BorderRadius.circular(10.0), 
+              ),
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                'Hasil Konversi: ${convertedAmount.toStringAsFixed(2)} $selectedToCurrency',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0,
+                  color: const Color.fromARGB(255, 30, 29, 29),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
+
 
 class CustomDrawer extends StatelessWidget {
   @override
@@ -125,16 +150,34 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
+          Container(
+            height: 200,
             decoration: BoxDecoration(
-              //color: Color.fromARGB(255, 68, 26, 26), 
-              image: DecorationImage(
-                image: AssetImage('assets/gambar_drawer1.jpg'),
-                fit: BoxFit.cover,
+              color: Color.fromARGB(248, 214, 201, 199),
+              
+            ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage('assets/gambar_drawer1.jpg'),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'MARIO TABAH',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
             ),
-            child: null,
           ),
+          Divider(),
           ListTile(
             title: Text('Halaman Utama'),
             leading: Icon(Icons.home, color: Colors.black),

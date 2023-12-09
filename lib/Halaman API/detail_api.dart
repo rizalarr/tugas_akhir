@@ -22,6 +22,7 @@ class UserDetail extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Card(
+            //color: Color.fromARGB(248, 237, 220, 217),
             elevation: 5,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),

@@ -73,8 +73,8 @@ class _halaman_usersState extends State<halaman_users> {
                       child: Column(
                         children: [
                           Container(
-                            width: 120,
-                            height: 120,
+                            width: 100,
+                            height: 100,
                             decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(2.0),
@@ -115,16 +115,34 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
+          Container(
+            height: 200,
             decoration: BoxDecoration(
-              //color: Color.fromARGB(255, 68, 26, 26), 
-              image: DecorationImage(
-                image: AssetImage('assets/gambar_drawer1.jpg'),
-                fit: BoxFit.cover,
+              color: Color.fromARGB(248, 214, 201, 199),
+              
+            ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage('assets/gambar_drawer1.jpg'),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'MARIO TABAH',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
             ),
-            child: null,
           ),
+          Divider(),
           ListTile(
             title: Text('Halaman Utama'),
             leading: Icon(Icons.home, color: Colors.black),

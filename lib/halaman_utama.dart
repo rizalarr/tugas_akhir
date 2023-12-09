@@ -127,76 +127,76 @@ class _HomePageState extends State<HomePage> {
                           MaterialPageRoute(builder: (context) => konversiwaktu()),
                         );
                       }),
-                      // Tambahkan card horizontal sesuai kebutuhan
                     ],
                   ),
                 ),
                 SizedBox(height: 16.0),
 
-                Text(
-                  'Data Tersimpan',
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-                ValueListenableBuilder(
-                  valueListenable: _myBox.listenable(),
-                  builder: (context, value, child) {
-                    if (_myBox.values.isEmpty) {
-                      return Center(
-                        child: Text("File KOSONG"),
-                      );
-                    } else {
-                      return Card(
-                        elevation: 3,
-                        margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                        child: Column(
-                          children: _myBox.values.map((res) {
-                            return ListTile(
-                              title: Text("Nama Mario: ${res.Title}"),
-                              subtitle: Text("Description     : ${res.Desc}"),
-                            );
-                          }).toList(),
-                        ),
-                      );
-                    }
-                  },
-                ),
-
-                SizedBox(height: 16.0),
-
-                // Deskripsi Aplikasi
-                Column(
+                Card(
+                color: Color.fromARGB(248, 237, 220, 217), 
+                elevation: 3,
+                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                child: Column(
                   children: [
+                    SizedBox(height: 8.0),
                     Text(
-                      'Deskripsi Aplikasi',
+                      'Data Tersimpan',
                       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 8.0),
-                    Card(
+                    ValueListenableBuilder(
+                      valueListenable: _myBox.listenable(),
+                      builder: (context, value, child) {
+                        if (_myBox.values.isEmpty) {
+                          return Center(
+                            child: Text("File KOSONG"),
+                          );
+                        } else {
+                          return Column(
+                            children: _myBox.values.map((res) {
+                              return ListTile(
+                                title: Text("Nama Mario: ${res.Title}"),
+                                subtitle: Text("Description     : ${res.Desc}"),
+                              );
+                            }).toList(),
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
+                SizedBox(height: 16.0),
+                Card(
+                      color: Color.fromARGB(248, 237, 220, 217), // Change the color as needed
                       elevation: 3,
-                      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                      margin: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                       child: Column(
                         children: [
+                          SizedBox(height: 8.0),
+                          Text(
+                            'Deskripsi Aplikasi',
+                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
+                          
                           Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                             child: Text(
                               'Aplikasi bernama MARIO APP. didalam nya terdapat beberapa fitur yang disuguhkan antaira lain fitur profil, mario game, tambah data, dan lihat data. masih banyak fitur yang dapat di explore didalam app ini',
-                              style: TextStyle(fontSize: 16.0),
+                              style: TextStyle(fontSize: 15.0),
                               textAlign: TextAlign.justify,
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
                 SizedBox(height: 16.0),
 
                 // Footer Kontak Service
                 Container(
-                  color: Colors.grey[300],
-                  padding: EdgeInsets.all(16.0),
+                  color: Colors.grey[200],
+                  padding: EdgeInsets.all(5.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -250,6 +250,7 @@ class HorizontalCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Card(
+         //color: Color.fromARGB(248, 237, 220, 217),
         child: Container(
           width: 120.0,
           child: Column(
@@ -278,16 +279,34 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
+          Container(
+            height: 200,
             decoration: BoxDecoration(
-              //color: Color.fromARGB(255, 68, 26, 26), 
-              image: DecorationImage(
-                image: AssetImage('assets/gambar_drawer1.jpg'),
-                fit: BoxFit.cover,
+              color: Color.fromARGB(248, 214, 201, 199),
+              
+            ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage('assets/gambar_drawer1.jpg'),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'MARIO TABAH',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
             ),
-            child: null,
           ),
+          Divider(),
           ListTile(
             title: Text('Halaman Utama'),
             leading: Icon(Icons.home, color: Colors.black),

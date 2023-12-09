@@ -64,8 +64,8 @@ class _MyDashboardState extends State<MyDashboard> {
                   elevation: 3,
                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: ListTile(
-                    title: Text("Nama MARIO: ${res!.Title}"),
-                    subtitle: Text("Description: ${res.Desc}"),
+                    title: Text("Nama : ${res!.Title}"),
+                    subtitle: Text("Deskripsi : ${res.Desc}"),
                   ),
                 ),
               );
@@ -85,16 +85,34 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
+          Container(
+            height: 200,
             decoration: BoxDecoration(
-              //color: Color.fromARGB(255, 68, 26, 26), 
-              image: DecorationImage(
-                image: AssetImage('assets/gambar_drawer1.jpg'),
-                fit: BoxFit.cover,
+              color: Color.fromARGB(248, 214, 201, 199),
+              
+            ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage('assets/gambar_drawer1.jpg'),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'MARIO TABAH',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
             ),
-            child: null,
           ),
+          Divider(),
           ListTile(
             title: Text('Halaman Utama'),
             leading: Icon(Icons.home, color: Colors.black),

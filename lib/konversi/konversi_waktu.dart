@@ -16,9 +16,9 @@ class konversiwaktu extends StatefulWidget {
 
 class _konversiwaktuState extends State<konversiwaktu> {
   final TextEditingController _timeController = TextEditingController();
-  String _selectedTimeZone = 'WIB';
-  String _convertedTime = '';
-  Map<String, int> _timeZoneOffsets = {'WIB': 7, 'WITA': 8, 'WIT': 9, 'Amerika': -5};
+  String _selectedTimeZone = 'WIB'; //zona default
+  String _convertedTime = ''; //menyimpan waktu yang tekah dikonversi
+  Map<String, int> _timeZoneOffsets = {'WIB': 7, 'WITA': 8, 'WIT': 9, 'Amerika': -5}; //memtakan zona waktu ke masing2 wilayah
   Map<String, String> _timeZoneLabels = {'WIB': 'WIB', 'WITA': 'WITA', 'WIT': 'WIT', 'Amerika': 'Amerika'};
 
   void _convertTime() {
@@ -36,26 +36,33 @@ class _konversiwaktuState extends State<konversiwaktu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Mario TIME'),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 97, 35, 35), 
+        backgroundColor: Color.fromARGB(255, 97, 35, 35),
       ),
-       drawer: CustomDrawer(),
+      drawer: CustomDrawer(), 
       backgroundColor: Color.fromARGB(248, 203, 158, 150),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            SizedBox(height: 10),
             Image.asset(
-              'assets/gambar6.jpg', 
-              height: 200, 
-              width: 300,
+              'assets/gambar6.jpg',
+            height: 200,
+            width: 300,
+            fit: BoxFit.cover, 
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 50),
             TextField(
               controller: _timeController,
-              decoration: InputDecoration(labelText: 'Masukkan waktu (HH:mm)'),
+              decoration: InputDecoration(
+                labelText: 'Masukkan waktu (hh:mm)',
+                border: OutlineInputBorder(),
+              ),
+              keyboardType: TextInputType.datetime,
             ),
             SizedBox(height: 20),
             DropdownButton<String>(
@@ -80,13 +87,27 @@ class _konversiwaktuState extends State<konversiwaktu> {
                 });
               },
               child: Text('Konversi'),
-               style: ElevatedButton.styleFrom(
+              style: ElevatedButton.styleFrom(
                 primary: Color.fromARGB(255, 97, 35, 35),
                 onPrimary: Colors.white,
               ),
             ),
             SizedBox(height: 20),
-            Text('$_selectedTimeZone: $_convertedTime'),
+            Container(
+              padding: EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: const Color.fromARGB(255, 33, 32, 32)), 
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Text(
+                '$_selectedTimeZone: $_convertedTime',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0,
+                  color: const Color.fromARGB(255, 33, 32, 32),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -102,16 +123,34 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
+          Container(
+            height: 200,
             decoration: BoxDecoration(
-              //color: Color.fromARGB(255, 68, 26, 26), 
-              image: DecorationImage(
-                image: AssetImage('assets/gambar_drawer1.jpg'),
-                fit: BoxFit.cover,
+              color: Color.fromARGB(248, 214, 201, 199),
+              
+            ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage('assets/gambar_drawer1.jpg'),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'MARIO TABAH',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
             ),
-            child: null,
           ),
+          Divider(),
           ListTile(
             title: Text('Halaman Utama'),
             leading: Icon(Icons.home, color: Colors.black),
